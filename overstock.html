@@ -3,6 +3,8 @@
 
 <head>
 
+  <script src="https://gist.github.com/devor/601b40f0073f565b5ac0ed9731728a7e.js"></script>
+
 </head>
 
 
@@ -10,87 +12,16 @@
 
 <body>
 
-<script type="text/javascript">
-  var x ;
-  
-  x = getAsLowAs(, 59900);
-
-  console.log(x);
-
-</script>
 
 
+<script type="text/javascript" id="upstream">
 
+var testasLowAs
+testasLowAs = getAsLowAs(installments, 59900);
 
+document.write(testasLowAs)
 
-  <script type="text/javascript" id="upstream">
-
-  /**
- * Get the exact monthly payment
- * @param  {Number} n  term in months
- * @param  {Number} p  price
- * @param  {Number} r  APR
- *
- * @returns {Number}  Returns the float of the exact payment, (Not rounded)
- */
-function getMonthly(n, p, r) {
-    // This is where the magic happens.
-    return (0.045045 * n * p * r * ( ((n * r) / (120 * (r + 1))) + 0.993) + ((31 * p * r) / 365) + p) / n;
-}
-
-/**
- * Builds an object with all of the terms.
- * @param    {Array}   installments  Holds an array of installment object
- * @param    {Number}  amount  an Integer of the price in minor units
- * 
- * @returns  {Object}
- * @property {String}  exact    The exact monthly amount ('$121.11')
- * @property {String}  monthly  The advertised monthly amount ('$122.00')
- * @property {Number}  months   The number of months (18)
- * @property {String}  total    The total payments ('$1117.69')
- * @property {Number}  rate     The APR in decimal format (0.0999)
- */
-function getAsLowAs(installments, amount) {
-    let lowestPrice = null;
-
-    installments.forEach( installment => {
-        if (installment.minimum_order_amount <= amount && amount <= installment.maximum_order_amount ) {
-            const exact = getMonthly(installment.monthly_installments, amount / 100, installment.offering_interest_rate);
-            const monthly = installment.monthly_installments > 24 ? exact.toFixed(2) : Math.ceil(exact); // exact cents for > 24, Round up to nearest dollar <= 24 months
-            const total = (exact * installment.monthly_installments).toFixed(2);
-          
-          
-            if (!lowestPrice || exact < lowestPrice.exact) {
-                lowestPrice = {
-                    monthly,
-                    months: installment.monthly_installments,
-                    total,
-                    rate: installment.offering_interest_rate * 100
-                };
-            }
-        }
-    });
-
-    return lowestPrice;
-}
-
-const installments = [{
-    minimum_order_amount: 29900,
-    maximum_order_amount: 79999,
-    monthly_installments: 36,
-    offering_interest_rate: 0
-}, {
-    minimum_order_amount: 59900,
-    maximum_order_amount: 499999,
-    monthly_installments: 24,
-    offering_interest_rate: 0.0999
-}];
-
-const asLowAs = getAsLowAs(installments, 400000);
-
-console.log(asLowAs);
-
-
+console.log(testasLowAs);
 
 
 
