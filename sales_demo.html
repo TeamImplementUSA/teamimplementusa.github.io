@@ -70,6 +70,7 @@
 
 
 <script>
+
     window.onload = function() {
         var anchors = document.getElementsByTagName('a');
         for(var i = 0; i < anchors.length; i++) {
@@ -79,12 +80,11 @@
               Klarna.Credit.authorize(
                
    function(res) {
-  console.debug(res);
-}
-)
+    console.debug(res);
+    AuthToken = JSON.stringify(res);
+    document.write(AuthToken);
+})
 
-
-                //alert('ho ho ho');
             }
         }
     }
@@ -93,10 +93,11 @@
 
 <script>
 
+
 setTimeout( function() {
 
   Klarna.Credit.init({
-    client_token: 'eyJhbGciOiJub25lIn0.ewogICJzZXNzaW9uX2lkIiA6ICI4MWE1NzFkZC1hOTBjLTUxNzYtOTc2MS1hZjUzYjAzN2QzZDkiLAogICJiYXNlX3VybCIgOiAiaHR0cHM6Ly9jcmVkaXQtbmEua2xhcm5hLmNvbSIsCiAgImRlc2lnbiIgOiAia2xhcm5hIiwKICAibGFuZ3VhZ2UiIDogImVuIiwKICAicHVyY2hhc2VfY291bnRyeSIgOiAiVVMiLAogICJhbmFseXRpY3NfcHJvcGVydHlfaWQiIDogIlVBLTM2MDUzMTM3LTEwIiwKICAidHJhY2VfZmxvdyIgOiB0cnVlLAogICJlbnZpcm9ubWVudCIgOiAicHJvZHVjdGlvbiIsCiAgIm1lcmNoYW50X25hbWUiIDogIkxlbm92byIsCiAgInNlc3Npb25fdHlwZSIgOiAiQ1JFRElUIiwKICAiY2xpZW50X2V2ZW50X2Jhc2VfdXJsIiA6ICJodHRwczovL2V2dC1uYS5rbGFybmEuY29tIgp9.'
+    client_token: 'eyJhbGciOiJub25lIn0.ewogICJzZXNzaW9uX2lkIiA6ICJiZGZjODk4Mi05ZGI3LTUzN2MtYmM4YS0xMDcyYTIwZTU5YmUiLAogICJiYXNlX3VybCIgOiAiaHR0cHM6Ly9jcmVkaXQtbmEucGxheWdyb3VuZC5rbGFybmEuY29tIiwKICAiZGVzaWduIiA6ICJrbGFybmEiLAogICJsYW5ndWFnZSIgOiAiZW4iLAogICJwdXJjaGFzZV9jb3VudHJ5IiA6ICJVUyIsCiAgInRyYWNlX2Zsb3ciIDogZmFsc2UsCiAgImVudmlyb25tZW50IiA6ICJwbGF5Z3JvdW5kIiwKICAibWVyY2hhbnRfbmFtZSIgOiAiTjEwMDE1OCIsCiAgInNlc3Npb25fdHlwZSIgOiAiQ1JFRElUIiwKICAiY2xpZW50X2V2ZW50X2Jhc2VfdXJsIiA6ICJodHRwczovL2V2dC1uYS5wbGF5Z3JvdW5kLmtsYXJuYS5jb20iCn0.'
   })
 
 
