@@ -82,6 +82,8 @@
    function(res) {
     console.debug(res);
     AuthToken = JSON.stringify(res);
+    document.write('Below is the result of your Authorize call, If successful use the Auth Token below to create the order.');
+    document.write('<br><br>')
     document.write(AuthToken);
 })
 
