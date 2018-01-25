@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+
+<body>
+
+<script type="text/javascript" id="klarna-credit-lib-x">
+  /* <![CDATA[ */
+  (function(w,d) {
+    var url = 'https://credit.klarnacdn.net/lib/v1-playground/api.js';
+    n = d.createElement('script');
+    c = d.getElementById('klarna-credit-lib-x');
+    n.async = !0;
+    n.src = url + '?' + (new Date()).getTime();
+    c.parentNode.replaceChild(n, c);
+  })(this,document);
+  /* ]]> */
+</script>
+
+
+
+<div id="klarna_container">
+
+</div>
+
+
+<a class="button" href="#">Place Order</a>
+
+
+<script>
+    window.onload = function() {
+        var anchors = document.getElementsByTagName('a');
+        for(var i = 0; i < anchors.length; i++) {
+            var anchor = anchors[i];
+            anchor.onclick = function() {
+
+              Klarna.Credit.authorize(
+               
+   function(res) {
+  console.debug(res);
+}
+)
+
+
+                //alert('ho ho ho');
+            }
+        }
+    }
+</script>
+
+
+<script>
+
+setTimeout( function() {
+
+  Klarna.Credit.init({
+    client_token: 'eyJhbGciOiJub25lIn0.ewogICJzZXNzaW9uX2lkIiA6ICIyYzkxYTNiMi1iNjAxLTViN2YtOGFmMi02OTFiY2Y0NjIxMWQiLAogICJiYXNlX3VybCIgOiAiaHR0cHM6Ly9jcmVkaXQtbmEucGxheWdyb3VuZC5rbGFybmEuY29tIiwKICAiZGVzaWduIiA6ICJrbGFybmEiLAogICJsYW5ndWFnZSIgOiAiZW4iLAogICJwdXJjaGFzZV9jb3VudHJ5IiA6ICJVUyIsCiAgInRyYWNlX2Zsb3ciIDogZmFsc2UsCiAgImVudmlyb25tZW50IiA6ICJwbGF5Z3JvdW5kIiwKICAibWVyY2hhbnRfbmFtZSIgOiAiUGxheWdyb3VuZCBEZW1vIE1lcmNoYW50IiwKICAic2Vzc2lvbl90eXBlIiA6ICJDUkVESVQiLAogICJjbGllbnRfZXZlbnRfYmFzZV91cmwiIDogImh0dHBzOi8vZXZ0LW5hLnBsYXlncm91bmQua2xhcm5hLmNvbSIKfQ.'
+  })
+
+
+  Klarna.Credit.load({
+    container: "#klarna_container"  
+  }, function(res) {
+    console.debug(res);
+  })
+},2000);
+
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,116 @@
+
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+
+<body>
+
+<Style>
+.button {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 24px;
+    border: 1px solid #a12727;
+    border-radius: 8px;
+    background: #ffa4a4;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffa4a4), to(#992727));
+    background: -moz-linear-gradient(top, #ffa4a4, #992727);
+    background: linear-gradient(to bottom, #ffa4a4, #992727);
+    text-shadow: #591717 1px 1px 1px;
+    font: normal normal bold 20px arial;
+    color: #ffffff;
+    text-decoration: none;
+}
+.button:hover,
+.button:focus {
+    background: #ff5959;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff5959), to(#b62f2f));
+    background: -moz-linear-gradient(top, #ff5959, #b62f2f);
+    background: linear-gradient(to bottom, #ff5959, #b62f2f);
+    color: #ffffff;
+    text-decoration: none;
+}
+.button:active {
+    background: #982727;
+    background: -webkit-gradient(linear, left top, left bottom, from(#982727), to(#982727));
+    background: -moz-linear-gradient(top, #982727, #982727);
+    background: linear-gradient(to bottom, #982727, #982727);
+}
+
+
+</Style>
+
+
+<script type="text/javascript" id="klarna-credit-lib-x">
+  /* <![CDATA[ */
+  (function(w,d) {
+    var url = 'https://credit.klarnacdn.net/lib/v1-playground/api.js';
+    n = d.createElement('script');
+    c = d.getElementById('klarna-credit-lib-x');
+    n.async = !0;
+    n.src = url + '?' + (new Date()).getTime();
+    c.parentNode.replaceChild(n, c);
+  })(this,document);
+  /* ]]> */
+</script>
+
+
+
+<div id="klarna_container">
+
+</div>
+
+
+<a class="button" href="#">Place Order</a>
+
+
+<script>
+
+    window.onload = function() {
+        var anchors = document.getElementsByTagName('a');
+        for(var i = 0; i < anchors.length; i++) {
+            var anchor = anchors[i];
+            anchor.onclick = function() {
+
+              Klarna.Credit.authorize(
+               
+   function(res) {
+    console.debug(res);
+    AuthToken = JSON.stringify(res);
+    document.write('Below is the result of your Authorize call, If successful use the Auth Token below to create the order.');
+    document.write('<br><br>')
+    document.write(AuthToken);
+})
+
+            }
+        }
+    }
+</script>
+
+
+<script>
+
+
+setTimeout( function() {
+
+  Klarna.Credit.init({
+    client_token: 'eyJhbGciOiJub25lIn0.ewogICJzZXNzaW9uX2lkIiA6ICJiZGZjODk4Mi05ZGI3LTUzN2MtYmM4YS0xMDcyYTIwZTU5YmUiLAogICJiYXNlX3VybCIgOiAiaHR0cHM6Ly9jcmVkaXQtbmEucGxheWdyb3VuZC5rbGFybmEuY29tIiwKICAiZGVzaWduIiA6ICJrbGFybmEiLAogICJsYW5ndWFnZSIgOiAiZW4iLAogICJwdXJjaGFzZV9jb3VudHJ5IiA6ICJVUyIsCiAgInRyYWNlX2Zsb3ciIDogZmFsc2UsCiAgImVudmlyb25tZW50IiA6ICJwbGF5Z3JvdW5kIiwKICAibWVyY2hhbnRfbmFtZSIgOiAiTjEwMDE1OCIsCiAgInNlc3Npb25fdHlwZSIgOiAiQ1JFRElUIiwKICAiY2xpZW50X2V2ZW50X2Jhc2VfdXJsIiA6ICJodHRwczovL2V2dC1uYS5wbGF5Z3JvdW5kLmtsYXJuYS5jb20iCn0.'
+  })
+
+
+  Klarna.Credit.load({
+    container: "#klarna_container"  
+  }, function(res) {
+    console.debug(res);
+  })
+},2000);
+
+</script>
+
+</body>
+</html>
