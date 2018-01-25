@@ -109,13 +109,13 @@ setTimeout( function() {
 
 
   Klarna.Credit.load({
-    container: "#klarna_container", 
-options: {
+   options: {
       color_border: "#C5F922",
       color_border_selected: "#C5F922",
       color_details: "#FF9900",
       color_text: "#FF9900",
-      radius_border: "10px"},
+      radius_border: "10px"}, 
+  container: "#klarna_container", 
   }, function(res) {
     console.debug(res);
   })
